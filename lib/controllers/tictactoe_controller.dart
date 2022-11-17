@@ -1,20 +1,34 @@
 import 'package:tictactoe_inheritedwidget/models/tictactoe_model.dart';
 
 class TictactoeController {
-  final TictactoeModel _tictactoeModel = TictactoeModel();
+  final TictactoeModel tictactoeModel;
 
-  TictactoeModel get titactoeModel => _tictactoeModel;
+  TictactoeController({required this.tictactoeModel});
 
-  void setPlay(bool turnPlayed, int index) {
-    _tictactoeModel.setPlay(turnPlayed ? 'X' : 'O', index);
+  List<String> get titactoeBoard => tictactoeModel.getMoves;
+
+  void setPlayTurn(int index) {
+    if (tictactoeModel.movePlayed(index) == '') {
+      tictactoeModel.setPlay(tictactoeModel.getPlayerTurn ? 'X' : 'O', index);
+      tictactoeModel.setTurn(tictactoeModel.getPlayerTurn ? false : true);
+    } else {
+      print('Casilla ya llenada');
+    }
   }
 
   void restartGame() {
-    _tictactoeModel.clearBoard();
+    tictactoeModel.clearBoard();
   }
 
-  bool changeTurn(bool player) {
-    bool playerTurn = player ? false : true;
-    return playerTurn;
+  String playerMove(int index) {
+    return tictactoeModel.movePlayed(index);
+  }
+
+  void setFilledBoxes() {
+    tictactoeModel.setFilledBoxes(tictactoeModel.filledBoxes + 1);
+  }
+
+  String playerTurn() {
+    return tictactoeModel.getPlayerTurn ? 'X' : 'O';
   }
 }

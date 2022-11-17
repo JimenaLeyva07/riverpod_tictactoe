@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:tictactoe_inheritedwidget/controllers/tictactoe_controller.dart';
+import 'package:tictactoe_inheritedwidget/models/tictactoe_model.dart';
+import 'package:tictactoe_inheritedwidget/ui/widgets/tictactoe_controller_widget.dart';
+
+import '../widgets/tictactoe_appbar_widget.dart';
+import '../widgets/tictactoe_board_grid_widget.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({
@@ -11,69 +16,39 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  TictactoeController tictactoeController = TictactoeController();
-  late bool playerTurn;
-  int index = 0;
+  late TictactoeController tictactoeController;
 
   @override
   void initState() {
     super.initState();
-    playerTurn = true;
+    tictactoeController =
+        TictactoeController(tictactoeModel: TictactoeModel(turn: true));
   }
 
-  void moveTurn(bool playerTurn, int index) {
+  void restartGame() {
     setState(() {
-      bool turn = tictactoeController.changeTurn(playerTurn);
-      tictactoeController.setPlay(turn, index);
+      tictactoeController.restartGame();
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          title: const Text('Tic Tac Toe'),
-        ),
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Expanded(
-              flex: 1,
-              child: GridView.builder(
-                // padding: const EdgeInsets.symmetric(
-                //   horizontal: 20,
-                //   // vertical: 30,
-                // ),
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 3),
-                itemBuilder: (BuildContext context, index) {
-                  return GestureDetector(
-                      onTap: (() {
-                        setState(() {
-                          tictactoeController.setPlay(playerTurn, index);
-                          playerTurn =
-                              tictactoeController.changeTurn(playerTurn);
-                        });
-                      }),
-                      child: Container(
-                        decoration: BoxDecoration(
-                            border: Border.all(color: Colors.blueGrey)),
-                        child: Center(
-                            child: Text(tictactoeController.titactoeModel
-                                .playerMovePosition(index))),
-                      ));
-                },
-                itemCount: 9,
-              ),
-            ),
-            FloatingActionButton(
-                onPressed: () {
-                  setState(() {
-                    tictactoeController.restartGame();
-                  });
-                },
-                child: const Icon(Icons.replay))
-          ],
-        ));
+    return TictactoeControllerWidget(
+      tictactoeController: tictactoeController,
+      playerTurn: 'Turno Jugador ${tictactoeController.playerTurn()}',
+      child: Scaffold(
+          appBar: const TictactoeAppbarWidget(),
+          body: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const TictactoeBoardGridWidget(),
+              FloatingActionButton(
+                  onPressed: () {
+                    restartGame();
+                  },
+                  child: const Icon(Icons.replay))
+            ],
+          )),
+    );
   }
 }
