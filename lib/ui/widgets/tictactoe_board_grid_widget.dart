@@ -19,13 +19,11 @@ class TictactoeBoardGridWidget extends StatelessWidget {
           //     .playerMove(index);
           return GestureDetector(
               onTap: (() {
+                TictactoeControllerWidget.of(context).setPlayTurn(index);
+
                 TictactoeControllerWidget.of(context)
                     .tictactoeController
-                    .setPlayTurn(index);
-
-                print(TictactoeControllerWidget.of(context)
-                    .tictactoeController
-                    .titactoeBoard);
+                    .setFilledBoxes();
               }),
               child: Container(
                   decoration:

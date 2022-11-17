@@ -27,6 +27,8 @@ class TictactoeModel {
 
   void clearBoard() {
     _playedList = ['', '', '', '', '', '', '', '', ''];
+    _filledBoxes = 0;
+    _playerTurn = true;
   }
 
   void setFilledBoxes(int box) {

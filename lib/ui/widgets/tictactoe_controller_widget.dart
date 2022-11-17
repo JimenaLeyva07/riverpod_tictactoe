@@ -6,10 +6,12 @@ class TictactoeControllerWidget extends InheritedWidget {
       {super.key,
       required super.child,
       required this.tictactoeController,
-      required this.playerTurn});
+      required this.filledBoxes,
+      required this.setPlayTurn});
 
   final TictactoeController tictactoeController;
-  final String playerTurn;
+  final int filledBoxes;
+  final Function setPlayTurn;
 
   static TictactoeControllerWidget of(BuildContext context) {
     final TictactoeControllerWidget? result =
@@ -20,6 +22,9 @@ class TictactoeControllerWidget extends InheritedWidget {
 
   @override
   bool updateShouldNotify(TictactoeControllerWidget oldWidget) {
-    return oldWidget.playerTurn != playerTurn;
+    print(oldWidget.filledBoxes);
+    print('----');
+    print(filledBoxes);
+    return oldWidget.filledBoxes != filledBoxes;
   }
 }
