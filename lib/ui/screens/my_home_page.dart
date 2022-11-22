@@ -44,18 +44,28 @@ class _MyHomePageState extends State<MyHomePage> {
       setPlayTurn: setPlayTurn,
       filledBoxes: tictactoeController.tictactoeModel.filledBoxes,
       child: Scaffold(
-          body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          const TictactoeTitleWidget(),
-          const TictactoeBoardGridWidget(),
-          FloatingActionButton(
-              onPressed: () {
-                restartGame();
-              },
-              child: const Icon(Icons.replay))
-        ],
-      )),
+        backgroundColor: const Color.fromARGB(51, 247, 240, 220),
+        body: SizedBox(
+          height: MediaQuery.of(context).size.height,
+          width: double.infinity,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 30),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: const [
+                TictactoeTitleWidget(),
+                TictactoeBoardGridWidget(),
+              ],
+            ),
+          ),
+        ),
+        floatingActionButton: FloatingActionButton.large(
+            onPressed: () {
+              restartGame();
+            },
+            backgroundColor: const Color.fromRGBO(49, 53, 110, 1),
+            child: const Icon(Icons.replay)),
+      ),
     );
   }
 }
