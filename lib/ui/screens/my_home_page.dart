@@ -44,7 +44,7 @@ class _MyHomePageState extends State<MyHomePage> {
       setPlayTurn: setPlayTurn,
       filledBoxes: tictactoeController.tictactoeModel.filledBoxes,
       child: Scaffold(
-        backgroundColor: const Color.fromARGB(51, 247, 240, 220),
+        backgroundColor: Color.fromARGB(255, 250, 246, 237),
         body: SizedBox(
           height: MediaQuery.of(context).size.height,
           width: double.infinity,
