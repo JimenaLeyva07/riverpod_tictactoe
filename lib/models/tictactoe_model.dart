@@ -1,5 +1,5 @@
 class TictactoeModel {
-  List<String> _playedList = ['', '', '', '', '', '', '', '', ''];
+  List<String> _playedList = List<String>.filled(9, '');
   late bool _playerTurn;
   int _filledBoxes = 0;
 
