@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tictactoe_inheritedwidget/main.dart';
-import 'package:tictactoe_inheritedwidget/ui/widgets/tictactoe_controller_widget.dart';
+//import 'package:tictactoe_inheritedwidget/ui/widgets/tictactoe_controller_widget.dart';
 
 class TictactoeBoardGridWidget extends ConsumerWidget {
   const TictactoeBoardGridWidget({
