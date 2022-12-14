@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-//import 'package:tictactoe_inheritedwidget/controllers/tictactoe_controller.dart';
-import 'package:tictactoe_inheritedwidget/main.dart';
-//import 'package:tictactoe_inheritedwidget/models/tictactoe_model.dart';
-//import 'package:tictactoe_inheritedwidget/ui/widgets/tictactoe_controller_widget.dart';
 
-import '../widgets/tictactoe_title_widget.dart';
-import '../widgets/tictactoe_board_grid_widget.dart';
+import '../../utils/liquid_responsive.dart';
+import '../widgets/board_design_widget.dart';
+import '../widgets/player_turn_widget.dart';
+import '../widgets/start_restart_title_widget.dart';
 
 class MyHomePage extends StatelessWidget {
   const MyHomePage({
@@ -16,32 +13,41 @@ class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 255, 251, 238),
-      body: SizedBox(
-        height: MediaQuery.of(context).size.height,
-        width: double.infinity,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 30),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: const [
-              TictactoeTitleWidget(),
-              TictactoeBoardGridWidget(),
-            ],
-          ),
-        ),
-      ),
-      floatingActionButton: Consumer(
-        builder: (BuildContext context, WidgetRef ref, Widget? child) {
-          return FloatingActionButton.large(
-              onPressed: () {
-                //restartGame();
-                ref.read(tictactoeChange.notifier).restartGame();
-              },
-              backgroundColor: const Color.fromRGBO(49, 53, 110, 1),
-              child: const Icon(Icons.replay));
-        },
-      ),
-    );
+        backgroundColor: const Color.fromRGBO(208, 188, 255, 1),
+        body: Column(
+          children: [
+            SizedBox(
+              width: double.infinity,
+              height:
+                  LiquidResponsive.heightDistancePercentage(context, 17.9372),
+            ),
+            //Player Turn Buttons
+            Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+              const PlayerTurnWidget(turnOfPlayer: 'Jugador 1 O'),
+              SizedBox(
+                width:
+                    LiquidResponsive.widthDistancePercentage(context, 4.8544),
+              ),
+              const PlayerTurnWidget(turnOfPlayer: 'Jugador 2 X')
+            ]),
+            SizedBox(
+                height:
+                    LiquidResponsive.heightDistancePercentage(context, 4.9327)),
+            const StartRestarTitleWidget(),
+            SizedBox(
+                height:
+                    LiquidResponsive.heightDistancePercentage(context, 6.2780)),
+            const BoardDesignWidget(),
+            SizedBox(
+                height: LiquidResponsive.heightDistancePercentage(
+                    context, 19.3946)),
+            //Footer
+            Image.asset('assets/patrocina.png',
+                width:
+                    LiquidResponsive.widthDistancePercentage(context, 83.4951),
+                height:
+                    LiquidResponsive.heightDistancePercentage(context, 5.9417))
+          ],
+        ));
   }
 }

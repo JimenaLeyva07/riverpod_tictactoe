@@ -28,6 +28,10 @@ class TictactoeController {
     tictactoeModel.setFilledBoxes(tictactoeModel.filledBoxes + 1);
   }
 
+  int filledBoxes() {
+    return tictactoeModel.filledBoxes;
+  }
+
   String playerTurn() {
     return tictactoeModel.getPlayerTurn ? 'X' : 'O';
   }
