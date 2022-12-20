@@ -9,7 +9,7 @@ class TictactoeController {
 
   void setPlayTurn(int index) {
     if (tictactoeModel.movePlayed(index) == '') {
-      tictactoeModel.setPlay(tictactoeModel.getPlayerTurn ? 'X' : 'O', index);
+      tictactoeModel.setPlay(tictactoeModel.getPlayerTurn ? 'O' : 'X', index);
       tictactoeModel.setTurn(tictactoeModel.getPlayerTurn ? false : true);
     } else {
       print('Casilla ya llenada');
@@ -35,4 +35,6 @@ class TictactoeController {
   String playerTurn() {
     return tictactoeModel.getPlayerTurn ? 'X' : 'O';
   }
+
+  void verifyWinner() {}
 }

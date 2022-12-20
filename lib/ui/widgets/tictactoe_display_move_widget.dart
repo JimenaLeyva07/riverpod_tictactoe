@@ -18,14 +18,11 @@ class TictactoeDisplayMoveWidget extends ConsumerWidget {
         final move =
             ref.watch(tictactoeChange).tictactoeController.playerMove(index);
         return Center(
-          child: Text(move,
-              style: TextStyle(
-                  color: move == 'X'
-                      ? const Color.fromRGBO(46, 176, 134, 1)
-                      : const Color.fromRGBO(184, 64, 94, 1),
-                  fontSize: 40,
-                  fontFamily: 'TitanOne')),
-        );
+            child: move == 'X'
+                ? Image.asset('assets/x_icon.png')
+                : move == 'O'
+                    ? Image.asset('assets/o_icon.png')
+                    : const Text(''));
       },
     );
   }
