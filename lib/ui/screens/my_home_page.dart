@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:tictactoe_inheritedwidget/ui/widgets/winner_widget.dart';
 
 import '../../main.dart';
 import '../../utils/liquid_responsive.dart';
@@ -14,14 +15,13 @@ class MyHomePage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final turnPlayer =
+    final tictactoeWatch =
         ref.watch(tictactoeChange).tictactoeController.playerTurn();
     return Scaffold(
         backgroundColor: const Color.fromRGBO(208, 188, 255, 1),
         body: Column(
           children: [
             SizedBox(
-              width: double.infinity,
               height:
                   LiquidResponsive.heightDistancePercentage(context, 17.9372),
             ),
@@ -33,7 +33,7 @@ class MyHomePage extends ConsumerWidget {
                     children: [
                       PlayerTurnWidget(
                           turnOfPlayer: 'Jugador 1 O',
-                          colorOfPlayer: turnPlayer == 'O'
+                          colorOfPlayer: tictactoeWatch == 'O'
                               ? const Color.fromRGBO(228, 227, 203, 1)
                               : const Color.fromRGBO(247, 244, 231, 1)),
                       SizedBox(
@@ -42,7 +42,7 @@ class MyHomePage extends ConsumerWidget {
                       ),
                       PlayerTurnWidget(
                           turnOfPlayer: 'Jugador 2 X',
-                          colorOfPlayer: turnPlayer == 'X'
+                          colorOfPlayer: tictactoeWatch == 'X'
                               ? const Color.fromRGBO(228, 227, 203, 1)
                               : const Color.fromRGBO(247, 244, 231, 1))
                     ]);

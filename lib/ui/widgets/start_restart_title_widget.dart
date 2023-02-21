@@ -19,7 +19,7 @@ class StartRestarTitleWidget extends ConsumerWidget {
             ref.read(tictactoeChange.notifier).restartGame();
           }
         },
-        child: Text(filledBoxes > 0 ? 'Reinciar' : 'Inicia la partida',
+        child: Text(filledBoxes > 0 ? 'Reiniciar' : 'Inicia la partida',
             style: TextStyle(
                 color: const Color.fromRGBO(28, 27, 31, 1),
                 fontFamily: 'Poppins',

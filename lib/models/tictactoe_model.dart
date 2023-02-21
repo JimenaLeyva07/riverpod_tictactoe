@@ -2,7 +2,7 @@ class TictactoeModel {
   List<String> _playedList = List<String>.filled(9, '');
   late bool _playerTurn;
   int _filledBoxes = 0;
-
+  bool _showWinner = false;
   TictactoeModel({required bool turn}) {
     _playerTurn = turn;
   }
@@ -19,6 +19,10 @@ class TictactoeModel {
 
   void setTurn(bool turn) {
     _playerTurn = turn;
+  }
+
+  bool setShowWinner(bool winner) {
+    return _showWinner = winner;
   }
 
   String movePlayed(int index) {
